@@ -8,6 +8,7 @@ class Solution
 public:
     int majorityElement(vector<int> &nums)
     {
+        // sort(nums.begin(), nums.end());
         quickSort(nums, 0, nums.size() - 1);
         return nums[nums.size() / 2];
     }
