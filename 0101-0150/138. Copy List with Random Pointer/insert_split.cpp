@@ -6,8 +6,8 @@ using namespace std;
 class Node {
 public:
     int val;
-    Node* next;
-    Node* random;
+    Node *next;
+    Node *random;
 
     Node(int _val) {
         val = _val;
@@ -18,20 +18,20 @@ public:
 
 class Solution {
 public:
-    Node* copyRandomList(Node* head) {
+    Node *copyRandomList(Node *head) {
         if (head == NULL) {
             return NULL;
         }
 
-        Node* current = head;
-        Node* temp;
+        Node *current = head;
+        Node *temp;
         while (current != NULL) {
             temp = current->next;
             current->next = new Node(current->val);
             current->next->next = temp;
             current = temp;
         }
-        Node* copyHead = head->next;
+        Node *copyHead = head->next;
 
         current = head;
         while (current != NULL) {

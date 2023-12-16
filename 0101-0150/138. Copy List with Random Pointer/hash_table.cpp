@@ -7,8 +7,8 @@ using namespace std;
 class Node {
 public:
     int val;
-    Node* next;
-    Node* random;
+    Node *next;
+    Node *random;
 
     Node(int _val) {
         val = _val;
@@ -19,12 +19,12 @@ public:
 
 class Solution {
 public:
-    Node* copyRandomList(Node* head) {
-        Node* newHead = new Node(0);
-        Node* origin = head;
-        Node* copy = newHead;
+    Node *copyRandomList(Node *head) {
+        Node *newHead = new Node(0);
+        Node *origin = head;
+        Node *copy = newHead;
 
-        unordered_map<Node*, Node*> map;
+        unordered_map<Node *, Node *> map;
         while (origin) {
             copy->next = new Node(origin->val);
             copy = copy->next;
