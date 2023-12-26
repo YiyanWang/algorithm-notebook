@@ -7,7 +7,7 @@ using namespace std;
 class LRUCache {
 public:
     int capacity;
-    unordered_map<int, pair<int, list<int>::iterator>> map;
+    unordered_map<int, pair<int, list<int>::iterator>> m;
     list<int> l;
 
     LRUCache(int capacity) {
@@ -15,32 +15,28 @@ public:
     }
 
     int get(int key) {
-        if (map.count(key)) {
-            updateHistory(key);
-            return map[key].first;
+        auto it = m.find(key);
+        if (it == m.end()) {
+            return -1;
         }
-        return -1;
+
+        l.erase(it->second.second);
+        l.push_back(key);
+        it->second.second = --l.end();
+        return it->second.first;
     }
 
     void put(int key, int value) {
-        if (map.count(key)) {
-            map[key].first = value;
-            updateHistory(key);
-            return;
-        }
-
-        if (map.size() == capacity) {
-            map.erase(l.front());
+        auto it = m.find(key);
+        if (it != m.end()) {
+            l.erase(it->second.second);
+        } else if (l.size() == capacity) {
+            m.erase(l.front());
             l.pop_front();
         }
+
         l.push_back(key);
-        map[key] = { value, --l.end() };
-    }
-private:
-    void updateHistory(int key) {
-        l.erase(map[key].second);
-        l.push_back(key);
-        map[key].second = --l.end();
+        m[key] = { value, --l.end() };
     }
 };
 
