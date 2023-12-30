@@ -6,7 +6,7 @@ int sentinelSearch(int arr[], int n, int target) {
     arr[n - 1] = target;
 
     int i = 0;
-    //There is no index out of bounds check.
+    //There is no index out-of-bounds check.
     //Sentinel search performs N + 2 comparisons, while linear search performs 2 * N comparisons.
     while (arr[i] != target)
         i++;
