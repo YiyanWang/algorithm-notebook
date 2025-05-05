@@ -1,10 +1,11 @@
 #include <iostream> 
 using namespace std;
 
-int binarySearch(int arr[], int n, int target) {
+// 二分查找，要求数组arr必须有序
+int binarySearch(const int arr[], int n, int target) {
     int left = 0, right = n - 1;
     while (left <= right) {
-        int mid = (left + right) / 2;
+        int mid = left + (right - left) / 2; // 避免溢出
         if (arr[mid] == target) {
             return mid;
         } else if (arr[mid] > target) {
